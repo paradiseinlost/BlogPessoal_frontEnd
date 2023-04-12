@@ -1,0 +1,21 @@
+.footer{
+    display: flex;
+    direction:row;
+    justify-content: center;
+   align-items: center;
+}
+
+.box{
+     background-color:#D84455!important;
+     height: 120px; 
+}
+
+.box2{
+    background-color:#D84455!important;
+    height: 60px;  
+}
+
+.fontefo{
+    font-family: Verdana,sans-serif!important;
+}
+
