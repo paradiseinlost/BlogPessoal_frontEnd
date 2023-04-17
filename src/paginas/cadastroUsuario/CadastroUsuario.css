@@ -1,0 +1,25 @@
+.logincolor {
+    background-color: #D84455 !important;
+    color: white !important;
+    margin-right: 20px !important;
+}
+
+.fonteLogin {
+
+    font-family: Verdana, sans-serif !important;
+}
+
+.imagem2 {
+    background-image: url(https://i.pinimg.com/564x/8d/9f/e6/8d9fe6a3517123335a065cf0b3caea06.jpg);
+    width: 300px;
+    height: 500px;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+
+
+}
+
+.fontecad {
+    font-family: Verdana, sans-serif !important;
+
+}
