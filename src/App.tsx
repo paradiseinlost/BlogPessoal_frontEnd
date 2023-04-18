@@ -6,6 +6,8 @@ import Footer from './components/estaticos/footer/Footer';
 import Login from './paginas/login/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CadastroUsuario from './paginas/cadastroUsuario/CadastroUsuario';
+import ListaTema from './components/temas/listatema/ListaTema';
+import ListaPostagem from './components/postagens/listapostagem/ListaPostagem';
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cadastroUsuario" element={<CadastroUsuario />} />
+          <Route path="/temas" element={<ListaTema />} />
+          <Route path="/postagens" element={<ListaPostagem />} />
 
         </Routes>
 

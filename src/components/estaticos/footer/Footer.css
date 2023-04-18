@@ -17,5 +17,7 @@
 
 .fontefo{
     font-family: Verdana,sans-serif!important;
+    text-decoration: inherit!important;
+    color: white!important;
 }
 

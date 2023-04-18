@@ -51,9 +51,10 @@ function CadastroUsuario() {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         if (confirmarSenha == user.senha) {
-            cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult)
-            alert('Usuario cadastrado com sucesso')
+           await cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult)
+           alert('Usuario cadastrado com sucesso')
         } else {
+            console.log(user) 
             alert('Dados inconsistentes. Favor verificar as informações de cadastro.')
         }
     }

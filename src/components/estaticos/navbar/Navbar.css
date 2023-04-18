@@ -1,22 +1,25 @@
-.appBar{
+.appBar {
     display: flex;
     justify-content: end;
-    background-color:#D84455!important;
+    background-color: #D84455 !important;
     align-items: center;
 }
 
-.box-itens{
+.box-itens {
     display: flex;
     flex-direction: row;
     cursor: pointer;
+    
 }
 
-.fontenav{
-    font-family: Verdana,sans-serif!important;
+.fontenav {
+    font-family: Verdana, sans-serif !important;
+    color: White;
+    text-decoration: inherit!important;
 }
 
-.icons{
+.icons {
 
-    justify-content: space-between!important;
+    justify-content: space-between !important;
 
 }
