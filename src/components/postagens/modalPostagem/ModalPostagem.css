@@ -4,5 +4,7 @@
 
 .btnModal{
     border-color: white !important;
-    background-color: white !important;
+    background-color:#a03145 !important;
+    color: lavender !important;
+    margin-right: 20px !important;
 }

@@ -14,7 +14,7 @@ function CadastroPostagem() {
     const [token, setToken] = useLocalStorage('token');
 
     useEffect(() => {
-        if (token == "") {
+        if (token === "") {
             alert("Você precisa estar logado")
             navigate("/login")
 
@@ -78,14 +78,14 @@ function CadastroPostagem() {
         e.preventDefault()
 
         if (id !== undefined) {
-            put(`/postagens`, postagem, setPostagem, {
+            await put(`/postagens`, postagem, setPostagem, {
                 headers: {
                     'Authorization': token
                 }
             })
             alert('Postagem atualizada com sucesso');
         } else {
-            post(`/postagens`, postagem, setPostagem, {
+            await post(`/postagens`, postagem, setPostagem, {
                 headers: {
                     'Authorization': token
                 }
@@ -97,7 +97,7 @@ function CadastroPostagem() {
     }
 
     function back() {
-        navigate('/postagens')
+        navigate('/posts')
     }
 
     return (
