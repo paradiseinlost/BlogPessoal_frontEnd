@@ -87,7 +87,8 @@ function ListaPostagem() {
                     </Grid>
                 ))
             }
-        </>)
+        </>
+    )
 }
 
 export default ListaPostagem;
