@@ -2,19 +2,22 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { Container, Typography, TextField, FormControl, InputLabel, Select, FormHelperText, Button, MenuItem } from "@material-ui/core";
 import './CadastroPostagem.css'
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
 import Postagem from "../../../models/Postagem";
 import Tema from "../../../models/Tema";
 import { busca, buscaId, put, post } from "../../../services/Service";
+import { TokenState } from "../../../store/tokens/tokensReducer";
+import { useSelector } from "react-redux";
 
 function CadastroPostagem() {
     let navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const [temas, setTemas] = useState<Tema[]>([])
-    const [token, setToken] = useLocalStorage('token');
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
 
     useEffect(() => {
-        if (token === "") {
+        if (token == "") {
             alert("Você precisa estar logado")
             navigate("/login")
 
@@ -97,13 +100,13 @@ function CadastroPostagem() {
     }
 
     function back() {
-        navigate('/posts')
+        navigate('/postagens')
     }
 
     return (
-        <Container maxWidth="sm" className="topo">
+        <Container maxWidth="sm" className="form">
             <form onSubmit={onSubmit}>
-                <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
+                <Typography variant="h4" className="form2" component="h1" align="center"  >Formulário de Cadastro Postagem ! </Typography>
                 <TextField value={postagem.titulo} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="titulo" label="titulo" variant="outlined" name="titulo" margin="normal" fullWidth />
                 <TextField value={postagem.texto} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="texto" label="texto" name="texto" variant="outlined" margin="normal" fullWidth />
 
@@ -124,7 +127,7 @@ function CadastroPostagem() {
                         }
                     </Select>
                     <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" className="button">
                         Finalizar
                     </Button>
                 </FormControl>

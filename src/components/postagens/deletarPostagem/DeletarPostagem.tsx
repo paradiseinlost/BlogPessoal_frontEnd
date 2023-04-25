@@ -4,14 +4,17 @@ import { Box } from "@mui/material";
 import './DeletarPostagem.css'
 import Postagem from "../../../models/Postagem";
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { useSelector } from "react-redux";
 import { buscaId, deleteId } from "../../../services/Service";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 
 function DeletarPostagem() {
     let navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
-    const [token, setToken] = useLocalStorage('token');
     const [post, setPosts] = useState<Postagem>()
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
 
     useEffect(() => {
         if (token == "") {
@@ -55,7 +58,7 @@ function DeletarPostagem() {
                     <CardContent>
                         <Box justifyContent="center">
                             <Typography color="textSecondary" gutterBottom>
-                                Deseja deletar a Postagem:
+                                Deseja deletar a Postagem?
                             </Typography>
                             <Typography color="textSecondary" >
                                 {post?.titulo}

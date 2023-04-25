@@ -2,15 +2,18 @@ import {Card, CardContent, Typography, CardActions, Button } from "@material-ui/
 import { Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { useSelector } from "react-redux";
 import Tema from "../../../models/Tema";
 import { buscaId, deleteId } from "../../../services/Service";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 
 
 function DeletarTema() {
   let navigate = useNavigate();
   const { id } = useParams<{id: string}>();
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
   const [tema, setTema] = useState<Tema>()
 
   useEffect(() => {
@@ -56,7 +59,7 @@ return (
         <CardContent>
           <Box justifyContent="center">
             <Typography color="textSecondary" gutterBottom>
-              Deseja deletar o Tema:
+              Deseja deletar o Tema?
             </Typography>
             <Typography color="textSecondary">
               {tema?.descricao}

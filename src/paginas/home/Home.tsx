@@ -4,13 +4,19 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import { Box } from "@mui/material";
 import TabPostagem from "../../components/postagens/tabpostagem/TabPostagem";
 import ModalPostagem from "../../components/postagens/modalPostagem/ModalPostagem";
-import { useNavigate } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { Link, useNavigate } from "react-router-dom";
+import { TokenState } from "../../store/tokens/tokensReducer";
+import { useSelector } from "react-redux";
+
 
 function Home() {
 
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    );
+
 
     useEffect(() => {
         if (token == "") {
@@ -19,6 +25,7 @@ function Home() {
 
         }
     }, [token])
+
 
     return (
 
@@ -31,10 +38,11 @@ function Home() {
                     </Box>
                     <Box display="flex" justifyContent="center">
                         < ModalPostagem />
-                        <Box marginBottom={5}>
-                            <Button variant="outlined" style={{ borderColor: "white", backgroundColor: "#a03145", color: "lavender" }}>Ver Postagens</Button>
-                        </Box>
-
+                        <Link to='/postagens'>
+                            <Box marginBottom={5}>
+                                <Button variant="outlined" style={{ borderColor: "white", backgroundColor: "#a03145", color: "lavender" }}>Ver Postagens</Button>
+                            </Box>
+                        </Link>
                     </Box>
                 </Grid>
                 <Grid xs={12} className="postagens">
@@ -48,3 +56,5 @@ function Home() {
 }
 
 export default Home;
+
+

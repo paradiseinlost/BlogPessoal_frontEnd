@@ -5,15 +5,25 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import './Footer.css';
 import React from "react";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 
 function Footer() {
-    return (
-        <>
-            <Grid container className="footer">
+
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    );
+
+
+    var footerComponent;
+
+    if (token != "") {
+
+        footerComponent = <Grid container className="footer">
                 <Grid alignItems="center" item xs={12}>
                     <Box className="box">
                         <Box paddingTop={1} display="flex" alignItems="center" justifyContent="center">
-                            <Typography variant="h5" align="center" gutterBottom style={{ color: "white" }}className="fontefo">Confira minhas redes sociais</Typography>
+                            <Typography variant="h5" align="center" gutterBottom style={{ color: "white" }} className="fontefo">Confira minhas redes sociais</Typography>
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="center">
                             <a href="mailto:scardoso.thais@gmail.com" target="_blank">
@@ -29,7 +39,7 @@ function Footer() {
                     </Box>
                     <Box className="box2">
                         <Box paddingTop={1}>
-                            <Typography variant="subtitle2" align="center" gutterBottom style={{ color: "white" }}className="fontefo" >© 2023 Copyright:</Typography>
+                            <Typography variant="subtitle2" align="center" gutterBottom style={{ color: "white" }} className="fontefo" >© 2023 Copyright:</Typography>
                         </Box>
                         <Box>
                             <a target="_blank" href="https://brasil.generation.org">
@@ -39,7 +49,11 @@ function Footer() {
                     </Box>
                 </Grid>
             </Grid>
+    }
 
+    return (
+        <>
+            {footerComponent}
         </>
     )
 }

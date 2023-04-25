@@ -2,16 +2,20 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import { Container, Typography, TextField, Button } from "@material-ui/core";
 import './CadastroTema.css';
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { useSelector } from "react-redux";
 import Tema from "../../../models/Tema";
 import { buscaId, put, post } from "../../../services/Service";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 
 
 function CadastroTema() {
 
     let navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
-    const [token, setToken] = useLocalStorage('token');
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    );
+
     const [tema, setTema] = useState<Tema>({
         id: 0,
         descricao: ''
@@ -80,11 +84,13 @@ function CadastroTema() {
     return (
         <Container maxWidth="sm" className="topo">
             <form onSubmit={onSubmit}>
-                <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro tema</Typography>
-                <TextField value={tema.descricao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedTema(e)} id="descricao" label="descricao" variant="outlined" name="descricao" margin="normal" fullWidth />
-                <Button type="submit" variant="contained" color="primary">
-                    Finalizar
-                </Button>
+                <Typography variant="h3" className="fonte" component="h1" align="center" >Formulário de Cadastro Tema!</Typography>
+                <TextField value={tema.descricao} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedTema(e)} id="descricao" label="Descrição" variant="outlined" name="descricao" margin="normal" fullWidth />
+                <div className="text">
+                    <Button type="submit" variant="contained" className="buttom">
+                        Finalizar
+                    </Button>
+                </div>
             </form>
         </Container>
     )

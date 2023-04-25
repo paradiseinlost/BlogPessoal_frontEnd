@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, Button, Typography, Grid } from '@material-ui/core';
 import { Box } from '@mui/material';
 import './ListaTema.css';
 import Tema from '../../../models/Tema';
-import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../services/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function ListaTema() {
 
     const [temas, setTemas] = useState<Tema[]>([])
-    const [token, setToken] = useLocalStorage('token');
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -39,6 +42,7 @@ function ListaTema() {
         <>
             {
                 temas.map(tema => (
+                    <Grid container direction='column'>
                     <Box m={2} >
                         <Card variant="outlined" className='colorcard'>
                             <CardContent className='fontecard'>
@@ -55,14 +59,14 @@ function ListaTema() {
                                     <Link to={`/formularioTema/${tema.id}`} className="text-decorator-none">
                                         <Box mx={1}>
                                             <Button variant="contained" className="marginLeft fonteposta" size='small' >
-                                                atualizar
+                                                Atualizar
                                             </Button>
                                         </Box>
                                     </Link>
                                     <Link to={`/deletarTema/${tema.id}`} className="text-decorator-none">
                                         <Box mx={1}>
                                             <Button variant="contained" size='small' className='fonteposta'>
-                                                deletar
+                                                Deletar
                                             </Button>
                                         </Box>
                                     </Link>
@@ -70,7 +74,9 @@ function ListaTema() {
                             </CardActions>
                         </Card>
                     </Box>
+                    </Grid>
                 ))}
+                
         </>
     );
 }

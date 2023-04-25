@@ -1,3 +1,20 @@
-.topo {
-    margin-top: 20px;
+.topo{
+    padding-top: 20vh;
+    
 }
+.fonte{
+    font-family: Verdana, sans-serif !important;
+    color: #692638!important;
+    padding-bottom: 30px;
+}
+.buttom{
+    background-color: #a03145 !important;
+    color: lavender !important;
+    padding-left: 20px !important;
+    text-align: center !important;
+}
+.text{
+    padding-top: 20px;
+    text-align: center !important;
+}
+
