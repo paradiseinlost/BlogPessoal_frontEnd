@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { buscaId, deleteId } from "../../../services/Service";
 import { TokenState } from "../../../store/tokens/tokensReducer";
+import { toast } from "react-toastify";
 
 function DeletarPostagem() {
     let navigate = useNavigate();
@@ -14,11 +15,20 @@ function DeletarPostagem() {
     const [post, setPosts] = useState<Postagem>()
     const token = useSelector<TokenState, TokenState["tokens"]>(
         (state) => state.tokens
-      );
+    );
 
     useEffect(() => {
         if (token == "") {
-            alert("Você precisa estar logado")
+            toast.error('Você precisa estar logado', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
             navigate("/login")
 
         }
@@ -45,7 +55,16 @@ function DeletarPostagem() {
                 'Authorization': token
             }
         });
-        alert('Postagem deletada com sucesso');
+        toast.success('Postagem deletada com sucesso', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+        });
     }
 
     function nao() {
@@ -54,10 +73,10 @@ function DeletarPostagem() {
     return (
         <>
             <Box m={2}>
-                <Card variant="outlined"  className="colorcard">
+                <Card variant="outlined" className="colorcard">
                     <CardContent>
                         <Box justifyContent="center">
-                            <Typography  gutterBottom className="fontecard">
+                            <Typography gutterBottom className="fontecard">
                                 Deseja deletar a Postagem?
                             </Typography>
                             <Typography className="fontecard">
@@ -69,12 +88,12 @@ function DeletarPostagem() {
                     <CardActions>
                         <Box display="flex" justifyContent="start" ml={1.0} mb={2} >
                             <Box mx={2}>
-                                <Button onClick={sim} variant="contained" className= "fontedel" size='large'>
+                                <Button onClick={sim} variant="contained" className="fontedel" size='large'>
                                     Sim
                                 </Button>
                             </Box>
                             <Box>
-                                <Button onClick={nao} variant="contained" size='large'  className="fontedel">
+                                <Button onClick={nao} variant="contained" size='large' className="fontedel">
                                     Não
                                 </Button>
                             </Box>
